@@ -8,9 +8,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
+    <Button
+        android:id="@+id/buttonPower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:onClick="irSend"
+        android:text="Power" />
 
+    <Button
+        android:id="@+id/buttonVolDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonPower"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_toLeftOf="@+id/buttonPower"
+        android:onClick="irSend"
+        android:text="Vol-" />
+
+    <Button
+        android:id="@+id/buttonMute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonVolDown"
+        android:layout_alignBottom="@+id/buttonVolDown"
+        android:layout_centerHorizontal="true"
+        android:onClick="irSend"
+        android:text="Mute" />
+
+    <Button
+        android:id="@+id/buttonVolUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonMute"
+        android:layout_alignBottom="@+id/buttonMute"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/buttonPower"
+        android:onClick="irSend"
+        android:text="Vol+" />
+    
 </RelativeLayout>
