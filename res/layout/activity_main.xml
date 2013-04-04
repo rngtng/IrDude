@@ -10,28 +10,17 @@
 
     <Button
         android:id="@+id/buttonPower"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:onClick="irSend"
         android:text="Power" />
 
     <Button
-        android:id="@+id/buttonVolDown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonPower"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@+id/buttonPower"
-        android:onClick="irSend"
-        android:text="Vol-" />
-
-    <Button
         android:id="@+id/buttonMute"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/buttonVolDown"
         android:layout_alignBottom="@+id/buttonVolDown"
@@ -41,7 +30,7 @@
 
     <Button
         android:id="@+id/buttonVolUp"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/buttonMute"
         android:layout_alignBottom="@+id/buttonMute"
@@ -49,5 +38,46 @@
         android:layout_toRightOf="@+id/buttonPower"
         android:onClick="irSend"
         android:text="Vol+" />
-    
+
+    <Button
+        android:id="@+id/buttonVolDown"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonPower"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_toLeftOf="@+id/buttonPower"
+        android:onClick="irSend"
+        android:text="Vol-" />
+
+    <Button
+        android:id="@+id/buttonTuner"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonVolDown"
+        android:layout_below="@+id/buttonVolDown"
+        android:layout_marginTop="60dp"
+        android:onClick="irSend"
+        android:text="Tuner" />
+
+    <Button
+        android:id="@+id/buttonPhono"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonTuner"
+        android:layout_alignBottom="@+id/buttonTuner"
+        android:layout_alignLeft="@+id/buttonMute"
+        android:onClick="irSend"
+        android:text="Phono" />
+
+    <Button
+        android:id="@+id/buttonAux"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonPhono"
+        android:layout_alignBottom="@+id/buttonPhono"
+        android:layout_alignLeft="@+id/buttonVolUp"
+        android:onClick="irSend"
+        android:text="Aux" />
+
 </RelativeLayout>

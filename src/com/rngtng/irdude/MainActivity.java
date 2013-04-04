@@ -4,43 +4,50 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.util.SparseArray;
 import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends Activity {
-	
-	HashMap<Integer, String> irData;
+	Object irdaService;
+	Method irWrite;
+	SparseArray<String> irData;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        irData = new HashMap<Integer, String>();
+        irData = new SparseArray<String>();
         irData.put(R.id.buttonPower,   "0000 006d 0022 0002 0152 00aa 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0696 0152 0055 0015 0e23");
         irData.put(R.id.buttonVolDown, "0000 006d 0022 0002 0152 00aa 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 0015 0015 003f 0015 003f 0015 0015 0015 0015 0015 0696 0152 0055 0015 0e23");
         irData.put(R.id.buttonMute,    "0000 006d 0022 0002 0152 00aa 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 0015 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0696 0152 0055 0015 0e23");
-        irData.put(R.id.buttonVolUp,   "0000 006d 0022 0002 0152 00aa 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0696 0152 0055 0015 0e23");                    
+        irData.put(R.id.buttonVolUp,   "0000 006d 0022 0002 0152 00aa 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 0015 0015 0696 0152 0055 0015 0e23");
+        irData.put(R.id.buttonTuner,   "0000 006d 0022 0002 0152 00aa 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 003f 0015 003f 0015 0015 0015 003f 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 0015 003f 0015 0015 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 003f 0015 0015 0015 0696 0152 0055 0015 0e23");
+        irData.put(R.id.buttonAux,     "0000 006d 0022 0002 0154 00aa 0014 0016 0014 0016 0014 0016 0014 0016 0014 0016 0014 0016 0014 0016 0014 0041 0014 0016 0014 0016 0014 0016 0014 0016 0014 0041 0013 0041 0014 0041 0014 0016 0014 0016 0014 0041 0013 0017 0013 0017 0013 0017 0013 0017 0013 0041 0014 0041 0014 0041 0013 0017 0013 0041 0014 0041 0014 0041 0013 0041 0014 0016 0014 0016 0014 06bf 0154 0056 0014 0e6b");
+        irData.put(R.id.buttonPhono,   "0000 006d 0022 0002 0154 00aa 0014 0016 0014 0016 0014 0016 0014 0016 0014 0016 0014 0016 0014 0016 0014 0041 0014 0016 0014 0016 0014 0016 0014 0016 0014 0041 0013 0041 0014 0041 0014 0016 0014 0016 0014 0041 0013 0041 0014 0041 0014 0016 0014 0016 0014 0041 0013 0041 0014 0041 0014 0016 0014 0016 0014 0016 0014 0041 0013 0041 0014 0016 0014 0016 0014 06bf 0154 0057 0013 0e6b");
+        
+        irInit();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }   
-        
-    public void irSend(View view) {
-    	System.out.println(view.getId());
-    	
+    public void irInit() { 	  
+        irdaService = this.getSystemService("irda");
+        Class c = irdaService.getClass();
+        Class p[] = {String.class};
+		try {
+			irWrite = c.getMethod("write_irsend", p);			
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		}    	
+    }
+    public void irSend(View view) {    	    	
     	String data = irData.get(view.getId());
-    	sendIr( hex2dec(data) );
+    	if(data != null) {
+    		sendIr( hex2dec(data) );
+    	}
     }
     
     public String hex2dec(String irData) {
@@ -65,27 +72,14 @@ public class MainActivity extends Activity {
     	return irData;
    }
     
-   public void sendIr(String irData) {    	
-        Object irdaService = this.getSystemService("irda");
-        Class c = irdaService.getClass();
-        Class p[] = {String.class};
-        Method write;
-		try {
-			write = c.getMethod("write_irsend", p);
-			try {
-				write.invoke(irdaService,irData);
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
+   public void sendIr(String irData) {
+	    try {
+			irWrite.invoke(irdaService,irData);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
     }
