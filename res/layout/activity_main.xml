@@ -19,16 +19,6 @@
         android:text="Power" />
 
     <Button
-        android:id="@+id/buttonMute"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonVolDown"
-        android:layout_alignBottom="@+id/buttonVolDown"
-        android:layout_centerHorizontal="true"
-        android:onClick="irSend"
-        android:text="Mute" />
-
-    <Button
         android:id="@+id/buttonVolUp"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -61,23 +51,33 @@
         android:text="Tuner" />
 
     <Button
-        android:id="@+id/buttonPhono"
+        android:id="@+id/buttonAux"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/buttonTuner"
         android:layout_alignBottom="@+id/buttonTuner"
-        android:layout_alignLeft="@+id/buttonMute"
+        android:layout_toLeftOf="@+id/buttonVolUp"
+        android:onClick="irSend"
+        android:text="Aux" />
+
+    <Button
+        android:id="@+id/buttonPhono"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/buttonAux"
+        android:layout_alignBottom="@+id/buttonAux"
+        android:layout_alignLeft="@+id/buttonVolUp"
         android:onClick="irSend"
         android:text="Phono" />
 
     <Button
-        android:id="@+id/buttonAux"
+        android:id="@+id/buttonMute"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/buttonPhono"
-        android:layout_alignBottom="@+id/buttonPhono"
-        android:layout_alignLeft="@+id/buttonVolUp"
+        android:layout_alignBaseline="@+id/buttonVolDown"
+        android:layout_alignBottom="@+id/buttonVolDown"
+        android:layout_toLeftOf="@+id/buttonVolUp"
         android:onClick="irSend"
-        android:text="Aux" />
+        android:text="Mute" />
 
 </RelativeLayout>
