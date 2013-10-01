@@ -1,6 +1,8 @@
 # IrDude
 
-Simple android app to turn on/off my HarmonKardon Avr-35 stereo. To support other devices, check http://www.remotecentral.com to get your hex codes.
+Simple android app to turn on/off my HarmonKardon Avr-35 stereo. To support other devices, check http://www.remotecentral.com to get your hex codes. 
+
+It makes use of a undocumented Samsung IR API, so this works very likely only with Samsung devices.
 
 **Serious**, this is very much of a hack and kind of work in progress!! :)
 
